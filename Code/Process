@@ -60,7 +60,7 @@ jar -cvf pairwisej.jar -C /home/emilie/Desktop/pairwisef/pairwisec .
 
 #Run JAR File
 
-bin/hadoop jar /home/emilie/Desktop/pairwisef/pairwisej.jar PairWisepro /user/inputdata/pg100.txt output /user/inputdata/preprocessing
+bin/hadoop jar /home/emilie/Desktop/pairwisef/pairwisej.jar PairWisepro /user/inputdata/preprocessing output
 
 
 
