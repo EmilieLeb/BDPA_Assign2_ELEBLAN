@@ -1,0 +1,70 @@
+########################
+### CREATE WORDCOUNT ###
+########################
+
+#Compile 
+
+javac  -classpath /usr/local/hadoop/share/hadoop/common/hadoop-common-2.7.3.jar:/usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.3.jar:/usr/local/hadoop/share/hadoop/common/lib/commons-cli-1.2.jar -d /home/emilie/Desktop/wordcountf *.java
+
+#Convert into Jar File
+
+jar -cvf wordcountj.jar -C /home/emilie/Desktop/wordcountf/wordcountc .
+
+#Run JAR File
+
+bin/hadoop jar /home/emilie/Desktop/wordcountf/wordcountj.jar WordCountpro /user/inputdata/pg100.txt output
+
+########################
+### CREATE STOPWORDS ###
+########################
+
+#Compile 
+
+javac  -classpath /usr/local/hadoop/share/hadoop/common/hadoop-common-2.7.3.jar:/usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.3.jar:/usr/local/hadoop/share/hadoop/common/lib/commons-cli-1.2.jar -d /home/emilie/Desktop/stopwordsf *.java
+
+#Convert into Jar File
+
+jar -cvf stopwordsj.jar -C /home/emilie/Desktop/stopwordsf/stopwordsc .
+
+#Run JAR File
+
+bin/hadoop jar /home/emilie/Desktop/stopwordsf/stopwordsj.jar StopWordspro /user/inputdata/pg100.txt output
+
+########################
+### DO PREPROCESSING ###
+########################
+
+#Compile 
+
+javac  -classpath /usr/local/hadoop/share/hadoop/common/hadoop-common-2.7.3.jar:/usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.3.jar:/usr/local/hadoop/share/hadoop/common/lib/commons-cli-1.2.jar -d /home/emilie/Desktop/preprocessingf *.java
+
+#Convert into Jar File
+
+jar -cvf preprocessingj.jar -C /home/emilie/Desktop/preprocessingf/preprocessingc .
+
+#Run JAR File
+
+bin/hadoop jar /home/emilie/Desktop/preprocessingf/preprocessingj.jar PreProcessingpro /user/inputdata/pg100.txt output /user/inputdata/stopwords.txt /user/inputdata/wordcount.txt 
+
+########################
+### DO PAIRWISE COMP ###
+########################
+
+#Compile 
+
+javac  -classpath /usr/local/hadoop/share/hadoop/common/hadoop-common-2.7.3.jar:/usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.3.jar:/usr/local/hadoop/share/hadoop/common/lib/commons-cli-1.2.jar -d /home/emilie/Desktop/pairwisef *.java
+
+#Convert into Jar File
+
+jar -cvf pairwisej.jar -C /home/emilie/Desktop/pairwisef/pairwisec .
+
+#Run JAR File
+
+bin/hadoop jar /home/emilie/Desktop/pairwisef/pairwisej.jar PairWisepro /user/inputdata/pg100.txt output /user/inputdata/preprocessing
+
+
+
+
+
+
+
